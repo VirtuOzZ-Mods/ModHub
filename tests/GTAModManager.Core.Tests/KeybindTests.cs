@@ -391,7 +391,10 @@ public sealed class KeybindScannerEditorTests : IDisposable
         var cp1251 = Encoding.GetEncoding(1251);
         const string text = "[Клавиши]\nМеню=1\nMenuKey=NumPad0 ; клавиша меню\n";
         Write("Old.ini", text, cp1251);
-        var r = KeybindEditor.Apply(Open(), Lib, "Old.ini|Клавиши|MenuKey", new KeyChord(0x67));
+        // A file that is not UTF-8 is read in the system ANSI code page, so the section name in the binding id depends
+        // on the machine's locale; what must hold everywhere is that the other bytes are written back unchanged.
+        var id = new KeybindScanner(Open()).Scan().Entries.Single(e => e.Params[0].Name == "MenuKey").Id;
+        var r = KeybindEditor.Apply(Open(), Lib, id, new KeyChord(0x67));
         Assert.Equal(TxState.Completed, r.State);
         Assert.Equal(
             text.Replace("NumPad0", "NumPad7"),

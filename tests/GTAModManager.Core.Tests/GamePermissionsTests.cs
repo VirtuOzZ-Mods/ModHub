@@ -85,7 +85,9 @@ public sealed class GamePermissionsTests : IDisposable
     [Fact]
     public void OnlyUserAccountSids_AreAccepted()
     {
-        Assert.True(GamePermissions.IsUserAccountSid(GamePermissions.CurrentUserSid()));
+        // A regular local or domain user (not the current one: CI runs as the built-in Administrator, refused on purpose).
+        Assert.True(GamePermissions.IsUserAccountSid("S-1-5-21-1111111111-2222222222-3333333333-1001"));
+        Assert.False(GamePermissions.IsUserAccountSid("S-1-5-21-1111111111-2222222222-3333333333-500")); // built-in Administrator
         Assert.False(GamePermissions.IsUserAccountSid("S-1-1-0")); // Everyone
         Assert.False(GamePermissions.IsUserAccountSid("S-1-5-32-545")); // Users
         Assert.False(GamePermissions.IsUserAccountSid("S-1-5-11")); // Authenticated Users
