@@ -44,6 +44,26 @@ The game is detected automatically (Rockstar Games Launcher, Steam, Epic Games).
 Requirements: Windows 10/11 x64, GTA V Legacy or Enhanced. The catalog's built-in browser needs the Microsoft Edge
 WebView2 Runtime (Windows 11 already has it).
 
+### Is it safe?
+
+Mod Hub is an `.exe`, so it is fair to ask. Here is how you can check it instead of taking anyone's word for it:
+
+- **The code is open.** Everything Mod Hub does is in this repository, under the MIT license.
+- **Release archives are built by GitHub, not on a developer's PC.** The
+  [release workflow](.github/workflows/release.yml) checks out the tagged source on GitHub's servers, runs all the
+  tests, builds the archive and attaches it to the release together with a signed
+  [build provenance attestation](../../attestations). To check a downloaded archive (with the GitHub CLI):
+  `gh attestation verify ModHub-0.4-beta.zip --repo VirtuOzZ-Mods/ModHub`. The release notes also list its SHA-256.
+- **VirusTotal.** Each release links a VirusTotal report of its archive.
+- **Why it asks for administrator rights.** Rockstar's launcher locks the game folder, so writing mods there needs
+  the UAC prompt. Only the small `gmm.exe` helper runs elevated, and only to change the game folder; the window
+  itself runs as a normal user.
+- **What it does not do.** No telemetry, no background services, no autostart, no drivers. It never edits Rockstar's
+  original files and never ships game files, keys or other people's programs — Script Hook V, RageOpenV,
+  ScriptHookVDotNet and the adjusters are downloaded from their authors' official pages when you install them.
+  The internet is used only for the catalog and for the downloads you start.
+- **Not code-signed yet**, so Windows SmartScreen may warn about an unknown publisher.
+
 ### Known limitation
 
 GTA V Enhanced only loads an ASI loader named `xinput1_4.dll` (it never loads `dinput8.dll`). Mod Hub currently

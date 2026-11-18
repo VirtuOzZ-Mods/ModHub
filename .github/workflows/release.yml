@@ -1,0 +1,65 @@
+# Builds the user archive on GitHub's own servers from the public source, runs every test, attaches the zip to the
+# release and publishes a signed build provenance attestation. Anyone can then check that the downloaded file was
+# built here from this repository and not on a developer's PC:
+#   gh attestation verify ModHub-<version>.zip --repo VirtuOzZ-Mods/ModHub
+name: Release build
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to build and attach the archive to (for example v0.4.0-beta)
+        required: true
+      asset_name:
+        description: Archive name on the release (default ModHub-<tag without v>.zip)
+        required: false
+
+permissions:
+  contents: write # attach the archive to the release
+  id-token: write # sign the attestation
+  attestations: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Test, publish and pack
+        shell: pwsh
+        run: ./scripts/publish-portable.ps1
+
+      - name: Name the archive and compute its SHA-256
+        id: pack
+        shell: pwsh
+        run: |
+          $name = '${{ inputs.asset_name }}'
+          if (-not $name) { $name = 'ModHub-' + $env:TAG.TrimStart('v') + '.zip' }
+          Move-Item build/ModHub-portable.zip $name
+          $hash = (Get-FileHash $name -Algorithm SHA256).Hash
+          "name=$name" >> $env:GITHUB_OUTPUT
+          "hash=$hash" >> $env:GITHUB_OUTPUT
+          "### $name`n`nSHA-256: ``$hash```n`nCommit: ``$(git rev-parse HEAD)``" >> $env:GITHUB_STEP_SUMMARY
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: ${{ steps.pack.outputs.name }}
+
+      - name: Attach the archive to the release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload $env:TAG '${{ steps.pack.outputs.name }}' --clobber
