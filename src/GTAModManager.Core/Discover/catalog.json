@@ -1,0 +1,506 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "essentials",
+      "title": "Modding Essentials",
+      "subtitle": "Базовые инструменты для модифицированной GTA V. Не всё нужно каждой сборке: смотрите на совместимость и назначение.",
+      "defaultSort": "kind"
+    },
+    {
+      "id": "virtuozz",
+      "title": "VirtuOzZ Mod Pack",
+      "subtitle": "Собственные проекты VirtuOzZ — автора ModHub.",
+      "defaultSort": "manual",
+      "hero": true
+    },
+    {
+      "id": "recommended",
+      "title": "Recommended by VirtuOzZ",
+      "subtitle": "Личные рекомендации разработчика ModHub.",
+      "defaultSort": "manual"
+    }
+  ],
+  "entries": [
+    {
+      "id": "lemonui",
+      "cover": "lemonui.png",
+      "detect": [
+            "scripts/LemonUI.SHVDN3.dll"
+      ],
+      "category": "essentials",
+      "order": 11,
+      "kind": "Библиотеки .NET-скриптов",
+      "kindOrder": 6,
+      "source": "github",
+      "install": "script-library",
+      "repo": "LemonUIbyLemon/LemonUI",
+      "url": "https://github.com/LemonUIbyLemon/LemonUI",
+      "title": "LemonUI",
+      "author": "LemonUIbyLemon",
+      "compat": {
+            "legacy": true,
+            "enhanced": false,
+            "note": "LemonUI 2.2: только SHVDN3. Legacy подтверждена; Enhanced не подтверждена. SHVDN2-варианта в этом релизе нет."
+      }
+},
+    {
+      "id": "nativeui",
+      "cover": "nativeui.png",
+      "detect": [
+            "scripts/NativeUI.dll"
+      ],
+      "category": "essentials",
+      "order": 12,
+      "kind": "Библиотеки .NET-скриптов",
+      "kindOrder": 6,
+      "source": "github",
+      "install": "script-library",
+      "repo": "Guad/NativeUI",
+      "url": "https://github.com/Guad/NativeUI",
+      "title": "NativeUI",
+      "author": "Guad",
+      "compat": {
+            "legacy": true,
+            "enhanced": false,
+            "note": "Оригинальная NativeUI 1.9.1 для Legacy и API SHVDN2. Проект архивирован; Enhanced не подтверждена."
+      }
+},
+    {
+      "id": "ifruitaddon2",
+      "cover": "ifruitaddon2.png",
+      "detect": [
+            "scripts/iFruitAddon2.dll"
+      ],
+      "category": "essentials",
+      "order": 13,
+      "kind": "Библиотеки .NET-скриптов",
+      "kindOrder": 6,
+      "source": "github",
+      "install": "script-library",
+      "repo": "Bob74/iFruitAddon2",
+      "url": "https://github.com/Bob74/iFruitAddon2",
+      "title": "iFruitAddon2",
+      "author": "Bob74",
+      "compat": {
+            "legacy": true,
+            "enhanced": true,
+            "note": "iFruitAddon2 3.1.1: Legacy и Enhanced, поддержка обеих редакций заявлена с 3.0.2. Требуется API SHVDN3."
+      }
+},
+    {
+      "id": "naturalvision-evolved",
+      "detect": ["mods\\update\\x64\\dlcpacks\\NVE\\dlc.rpf"],
+      "category": "recommended",
+      "order": 3,
+      "kind": "Графика · готовый мастер установки",
+      "source": "razedmods",
+      "install": "naturalvision",
+      "url": "https://razedmods.com/ru/gtavlegacy",
+      "cover": "naturalvision-evolved.jpg",
+      "title": "NaturalVision Evolved",
+      "author": "Razed Mods",
+      "compat": { "legacy": true, "enhanced": false, "note": "Скачайте архив NaturalVision Evolved с сайта автора и перетащите его в ModHub. Менеджер определит Legacy и откроет мастер выбора основных частей, дополнений и ReShade." }
+    },
+    {
+      "id": "naturalvision-enhanced",
+      "detect": ["onigiri.asi"],
+      "category": "recommended",
+      "order": 4,
+      "kind": "Графика · готовый мастер установки",
+      "source": "razedmods",
+      "install": "naturalvision",
+      "url": "https://razedmods.com/ru/gtavenhanced",
+      "cover": "naturalvision-enhanced.jpg",
+      "title": "NaturalVision Enhanced",
+      "author": "Razed Mods",
+      "compat": { "legacy": false, "enhanced": true, "note": "Скачайте архив NaturalVision Enhanced с сайта автора и перетащите его в ModHub. Менеджер определит Enhanced и откроет мастер установки с выбором ReShade/RenoDX." }
+    },
+    {
+      "id": "rageopenv",
+      "detect": ["RageOpenV.asi"],
+      "category": "essentials",
+      "order": 0,
+      "kind": "Загрузчик папки mods",
+      "kindOrder": 0,
+      "source": "gta5mods",
+      "install": "base",
+      "url": "https://www.gta5-mods.com/tools/rageopenv",
+      "title": "RageOpenV",
+      "author": "martonp96, Chiheb-Bacha",
+      "compat": { "legacy": true, "enhanced": true, "note": "Загрузчик папки mods с открытым кодом. Mod Hub ставит официальную версию v1.0 с GitHub авторов и проверяет её контрольную сумму." }
+    },
+    {
+      "id": "scripthookv",
+      "detect": ["ScriptHookV.dll"],
+      "category": "essentials",
+      "order": 1,
+      "kind": "Загрузчик скриптов",
+      "kindOrder": 1,
+      "source": "devc",
+      "install": "base",
+      "url": "https://www.dev-c.com/gtav/scripthookv/",
+      "cover": "scripthookv.png",
+      "title": "Script Hook V",
+      "author": "Alexander Blade",
+      "compat": { "legacy": true, "enhanced": true, "note": "Официальная страница: поддерживаемые патчи Legacy и Enhanced. Нужна версия под текущий патч игры." }
+    },
+    {
+      "id": "shvdn-nightly",
+      "detect": ["ScriptHookVDotNet.asi|product!~Enhanced"],
+      "category": "essentials",
+      "order": 2,
+      "kind": ".NET-скрипты",
+      "kindOrder": 2,
+      "source": "github",
+      "install": "base",
+      "repo": "scripthookvdotnet/scripthookvdotnet-nightly",
+      "url": "https://github.com/scripthookvdotnet/scripthookvdotnet-nightly/releases",
+      "cover": "shvdn-nightly.png",
+      "title": "ScriptHookVDotNet Nightly",
+      "author": "ScriptHookVDotNet",
+      "compat": { "legacy": true, "note": "Совместимость с Enhanced не подтверждена. Для Enhanced — ScriptHookVDotNet Enhanced." }
+    },
+    {
+      "id": "shvdn-enhanced",
+      "detect": ["ScriptHookVDotNet.asi|product~Enhanced"],
+      "category": "essentials",
+      "order": 3,
+      "kind": ".NET-скрипты",
+      "kindOrder": 2,
+      "source": "github",
+      "install": "base",
+      "repo": "Chiheb-Bacha/ScriptHookVDotNetEnhanced",
+      "url": "https://github.com/Chiheb-Bacha/ScriptHookVDotNetEnhanced/releases",
+      "cover": "shvdn-enhanced.png",
+      "title": "ScriptHookVDotNet Enhanced",
+      "author": "Chiheb-Bacha",
+      "compat": { "enhanced": true, "note": "Сборка SHVDN для GTA V Enhanced." }
+    },
+    {
+      "id": "heapadjuster",
+      "detect": ["GTAV.HeapAdjuster.asi"],
+      "category": "essentials",
+      "order": 4,
+      "kind": "Лимиты памяти",
+      "kindOrder": 3,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/tools/heapadjuster",
+      "title": "HeapAdjuster",
+      "author": "Dilapidated",
+      "compat": { "legacy": true, "note": "Поддержка Enhanced не заявлена. Для Enhanced — HeapAdjuster Enhanced." }
+    },
+    {
+      "id": "heapadjuster-enhanced",
+      "detect": ["HeapAdjuster.asi", "HeapAdjusterEnhanced.asi"],
+      "category": "essentials",
+      "order": 5,
+      "kind": "Лимиты памяти",
+      "kindOrder": 3,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/tools/heapadjuster-enhanced",
+      "title": "HeapAdjuster Enhanced",
+      "author": "Chiheb-Bacha",
+      "install": "base",
+      "compat": { "enhanced": true }
+    },
+    {
+      "id": "packfile-limit-adjuster",
+      "detect": ["PackfileLimitAdjuster.asi"],
+      "category": "essentials",
+      "order": 6,
+      "kind": "Лимиты архивов",
+      "kindOrder": 4,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/tools/packfile-limit-adjuster",
+      "title": "Packfile Limit Adjuster",
+      "author": "alloc8or",
+      "compat": { "legacy": true, "note": "Поддержка Enhanced не заявлена. Для Enhanced — Packfile Limit Adjuster Enhanced." }
+    },
+    {
+      "id": "packfile-limit-adjuster-enhanced",
+      "detect": ["PackfileLimitAdjusterEnhanced.asi"],
+      "category": "essentials",
+      "order": 7,
+      "kind": "Лимиты архивов",
+      "kindOrder": 4,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/packfile-limit-adjuster-enhanced",
+      "title": "Packfile Limit Adjuster Enhanced",
+      "install": "base",
+      "compat": { "enhanced": true }
+    },
+    {
+      "id": "modkit-limit-adjuster-enhanced",
+      "detect": ["ModkitLimitAdjusterEnhanced.asi", "ModKitLimitExtender.asi"],
+      "category": "essentials",
+      "order": 9,
+      "kind": "Лимиты пулов",
+      "kindOrder": 6,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/modkit-limit-adjuster-enhanced",
+      "title": "Modkit Limit Adjuster Enhanced",
+      "author": "Chiheb-Bacha",
+      "install": "base",
+      "compat": { "enhanced": true, "note": "Входит в базовый пакет Mod Hub для Enhanced (лимит 65536, как советует автор)." }
+    },
+    {
+      "id": "static-bound-limit-adjuster",
+      "detect": ["StaticBoundsLimitAdjuster.asi", "StaticBoundLimitAdjuster.asi"],
+      "category": "essentials",
+      "order": 10,
+      "kind": "Лимиты пулов",
+      "kindOrder": 6,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/static-bound-limit-adjuster",
+      "title": "Static Bounds Limit Adjuster",
+      "author": "Nochala",
+      "install": "base",
+      "compat": { "enhanced": true, "note": "Входит в базовый пакет Mod Hub для Enhanced. Защищает от вылетов 0xC0000005 с тяжёлыми картами и интерьерами." }
+    },
+    {
+      "id": "resource-extensions",
+      "detect": ["ResourceExtensions.asi"],
+      "category": "essentials",
+      "order": 14,
+      "kind": "Все лимиты в одном",
+      "kindOrder": 7,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/resource-extensions",
+      "title": "Resource Extensions [Enhanced]",
+      "author": "Koukol",
+      "compat": { "enhanced": true, "note": "Один ASI вместо HeapAdjuster, расширителей Packfile/Modkit/StaticBounds и своего gameconfig.xml. Выбирайте что-то одно: его или базовый набор Mod Hub. Автор просит удалить остальные расширители и любой gameconfig.xml (с NaturalVision Enhanced — onigiri\\common\\data\\gameconfig.xml). Нужен Script Hook V. Скачайте со страницы автора и перетащите архив в Mod Hub." }
+    },
+    {
+      "id": "gameconfig-dilapidated",
+      "category": "essentials",
+      "order": 8,
+      "kind": "Конфигурация игры",
+      "kindOrder": 5,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/misc/gta-5-gameconfig-300-cars",
+      "title": "GameConfig — Legacy / Enhanced",
+      "author": "F7YO",
+      "install": "base",
+      "compat": { "legacy": true, "enhanced": true, "note": "Автор публикует отдельные варианты Legacy и Enhanced. Точная сборка и выбранный файл требуют проверки; автоматическая совместимость не подтверждена." }
+    },
+    {
+      "id": "gameconfig-lcpp-nve",
+      "category": "essentials",
+      "order": 15,
+      "kind": "Специальный GameConfig для LCPP + NVE",
+      "kindOrder": 5,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/misc/ultimate-stability-gameconfig-for-grand-theft-auto-v-v1-0-3889",
+      "title": "Ultimate Stability Gameconfig (LCPP + NVE)",
+      "author": "Shreonmods",
+      "compat": { "legacy": true, "enhanced": false, "note": "Специальный gameconfig для сборки Liberty City Preservation Project + NaturalVision Evolved (также Lively World Expansion и Forests of San Andreas). Только Legacy 1.0.3889. Вместо обычного GameConfig, не вместе с ним. Автор требует HeapAdjuster на 2000 (2500 при 32 ГБ ОЗУ) и Packfile Limit Adjuster на 65536." }
+    },
+
+    {
+      "id": "nos",
+      "detect": ["scripts\\N.O.S - Nitro Overdrive System.dll"],
+      "category": "virtuozz",
+      "order": 1,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/n-o-s-nitro-overdrive-system",
+      "title": "N.O.S. - Nitro Overdrive System",
+      "author": "VirtuOzZ"
+    },
+    {
+      "id": "traffic-player-recorder",
+      "detect": ["scripts\\T&P Recorder.dll"],
+      "category": "virtuozz",
+      "order": 2,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/traffic-player-recorder-net-machinima-tool-beta",
+      "title": "Traffic & Player Recorder.NET",
+      "author": "VirtuOzZ"
+    },
+    {
+      "id": "quick-dialogue-system",
+      "category": "virtuozz",
+      "order": 3,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/quick-dialogue-system",
+      "title": "Quick Dialogue System",
+      "author": "VirtuOzZ"
+    },
+    {
+      "id": "tesla-roadster-rcs",
+      "category": "virtuozz",
+      "order": 4,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/gta-v-tesla-rcs-physics-based-air-stabilization",
+      "title": "Tesla Roadster RCS – Physics-Based Air Stabilization",
+      "author": "VirtuOzZ"
+    },
+
+    {
+      "id": "simple-trainer",
+      "detect": ["TrainerV.asi"],
+      "category": "recommended",
+      "order": 1,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/simple-trainer-for-gtav",
+      "title": "Simple Trainer for GTA V",
+      "author": "sjaak327",
+      "compat": { "legacy": true, "enhanced": true, "note": "Автор указывает поддержку Enhanced; часть функций в Enhanced не работает." }
+    },
+    {
+      "id": "menyoo-2-0",
+      "detect": ["Menyoo.asi"],
+      "category": "recommended",
+      "order": 2,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/menyoo-2-0",
+      "title": "Menyoo 2.0"
+    },
+    {
+      "id": "scene-director",
+      "category": "recommended",
+      "order": 5,
+      "source": "gta5mods",
+      "url": "https://www.gta5-mods.com/scripts/scene-director",
+      "title": "Scene Director",
+      "author": "elsewhat",
+      "compat": { "legacy": true, "note": "Режиссёр сцен: актёры, камеры и записи для машиним. Скрипт для ScriptHookVDotNet; поддержка Enhanced автором не заявлена." }
+    },
+    {
+      "id": "map-editor",
+      "cover": "map-editor.png",
+      "category": "recommended",
+      "order": 6,
+      "kind": "Редактор карт",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/map-editor",
+      "title": "Map Editor",
+      "author": "Guadmaz",
+      "compat": {
+        "legacy": true,
+        "enhanced": null,
+        "note": "Legacy: оригинал 2.13, SHVDN API2 и NativeUI. Общие файлы с Andre’s Map Editor — совместная установка заблокирована."
+      },
+      "detect": [
+        "scripts/MapEditor.dll"
+      ]
+    },
+    {
+      "id": "andres-map-editor",
+      "cover": "andres-map-editor.png",
+      "category": "recommended",
+      "order": 7,
+      "kind": "Редактор карт",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/andre-s-map-editor",
+      "title": "Andre’s Map Editor",
+      "author": "andre500",
+      "compat": {
+        "legacy": true,
+        "enhanced": null,
+        "note": "Форк 3.0: SHVDN3 и LemonUI. Enhanced не подтверждена. Не устанавливается поверх оригинального Map Editor."
+      },
+      "detect": [
+        "scripts/MapEditor.dll"
+      ]
+    },
+    {
+      "id": "enable-all-interiors",
+      "cover": "enable-all-interiors.jpg",
+      "category": "recommended",
+      "order": 8,
+      "kind": "Интерьеры",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/enable-all-interiors-wip",
+      "title": "Enable All Interiors",
+      "author": "HKH191",
+      "compat": {
+        "legacy": true,
+        "enhanced": true,
+        "note": "47.1.1: Legacy и Enhanced. Требует LemonUI SHVDN3 и специальную iFruitAddon2 2.1.1 из архива; автор запрещает замену на 3.1/3.1.1."
+      },
+      "detect": [
+        "scripts/EnableAllinteriors.dll"
+      ]
+    },
+    {
+      "id": "trafficx-custom",
+      "cover": "trafficx-custom.jpg",
+      "category": "recommended",
+      "order": 9,
+      "kind": "Трафик",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/trafficx-custom",
+      "title": "TrafficX Custom",
+      "author": "DexterLooo",
+      "compat": {
+        "legacy": true,
+        "enhanced": true,
+        "note": "0.2.1: отдельные сборки Legacy/Enhanced. SHVDN API3 и LemonUI; Addon To Road необязателен. В Enhanced автоустановка LemonUI не подтверждена."
+      },
+      "detect": [
+        "scripts/TrafficX Custom.dll"
+      ]
+    },
+    {
+      "id": "100-save-game",
+      "cover": "100-save-game.jpg",
+      "category": "recommended",
+      "order": 10,
+      "kind": "Сохранение",
+      "source": "gta5mods",
+      "install": "none",
+      "url": "https://www.gta5-mods.com/misc/100-save-game",
+      "title": "100% Game Save",
+      "author": "DireZephyr",
+      "compat": {
+        "legacy": true,
+        "enhanced": null,
+        "note": "v6.1 для Legacy (Build 505.2): SGTA50015 и .bak в Documents/Rockstar Games/GTA V/Profiles/<профиль>. Только страница: безопасная установка сейвов не поддерживается. Enhanced не подтверждена."
+      },
+      "detect": []
+    },
+    {
+      "id": "autosport-racing-system",
+      "cover": "autosport-racing-system.jpg",
+      "category": "recommended",
+      "order": 12,
+      "kind": "Гонки",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/autosport-racing-system",
+      "title": "Autosport Racing System (ARS) [Legacy]",
+      "author": "Eddlm",
+      "compat": {
+        "legacy": true,
+        "enhanced": false,
+        "note": "0.9.0.1: только Legacy. Требует ScriptHookV от 15.07.2026 и ScriptHookVDotNet Enhanced 1.1.0.6 или новее. LemonUI.SHVDN2 1.5.2 включена. Папка AutosportRacingSystem устанавливается в scripts; старая scripts/ARS несовместима. Меню: Shift+E или arsmenu."
+      },
+      "detect": [ "scripts/AutosportRacingSystem/ARS.dll" ]
+    },
+    {
+      "id": "ghost-replay",
+      "cover": "ghost-replay.jpg",
+      "category": "recommended",
+      "order": 11,
+      "kind": "Запись заездов",
+      "source": "gta5mods",
+      "install": "download",
+      "url": "https://www.gta5-mods.com/scripts/ghost-car",
+      "title": "Ghost Replay",
+      "author": "ikt",
+      "compat": {
+        "legacy": true,
+        "enhanced": null,
+        "note": "2.4.1: Legacy, ScriptHookV и Visual C++ x64. GhostReplay.asi и GhostReplay — в корень игры. Enhanced не подтверждена."
+      },
+      "detect": [
+        "GhostReplay.asi"
+      ]
+    }
+  ]
+}

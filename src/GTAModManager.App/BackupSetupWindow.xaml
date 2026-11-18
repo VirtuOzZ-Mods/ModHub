@@ -1,0 +1,192 @@
+<Window
+  x:Class="GTAModManager.App.BackupSetupWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Title="{loc:Tr ui.common.backups}"
+  Icon="app.ico"
+  Width="640"
+  SizeToContent="Height"
+  ResizeMode="NoResize"
+  Background="{StaticResource Bg}"
+  WindowStartupLocation="CenterOwner"
+  ShowInTaskbar="False"
+  xmlns:loc="clr-namespace:GTAModManager.App.Localization"
+>
+  <WindowChrome.WindowChrome>
+    <WindowChrome
+      CaptionHeight="40"
+      ResizeBorderThickness="0"
+      GlassFrameThickness="0"
+      CornerRadius="0"
+      UseAeroCaptionButtons="False"
+    />
+  </WindowChrome.WindowChrome>
+  <Border BorderBrush="{StaticResource Line}" BorderThickness="1">
+    <StackPanel>
+      <Border
+        Background="{StaticResource Panel}"
+        Height="40"
+        BorderBrush="{StaticResource Line}"
+        BorderThickness="0,0,0,1"
+      >
+        <DockPanel>
+          <Button DockPanel.Dock="Right" Style="{StaticResource CloseButton}" Content="&#xE8BB;" Click="OnLater" />
+          <TextBlock
+            Text="{loc:Tr ui.backupSetupWindow.modBackups}"
+            FontWeight="SemiBold"
+            VerticalAlignment="Center"
+            Margin="16,0,0,0"
+          />
+        </DockPanel>
+      </Border>
+
+      <StackPanel Margin="26,22,26,24">
+        <TextBlock Text="{loc:Tr ui.backupSetupWindow.createBackupFolder}" FontSize="20" FontWeight="SemiBold" />
+        <TextBlock Foreground="#CFCFCF" TextWrapping="Wrap" Margin="0,8,0,18" LineHeight="20">
+          <Run Text="{loc:Tr ui.backupSetupWindow.beforeInstallingModManagerSaves}" />
+        </TextBlock>
+
+        <RadioButton
+          x:Name="YesOption"
+          Style="{StaticResource SideOption}"
+          GroupName="choice"
+          IsChecked="True"
+          Checked="OnChoiceChanged"
+        >
+          <StackPanel>
+            <TextBlock
+              Text="{loc:Tr ui.backupSetupWindow.yesKeepBackupsRecommended}"
+              FontSize="14"
+              FontWeight="SemiBold"
+            />
+            <TextBlock
+              Text="{loc:Tr ui.backupSetupWindow.anyModInstallationCanUndone}"
+              Foreground="{StaticResource Muted}"
+              FontSize="12"
+              Margin="0,3,0,0"
+            />
+          </StackPanel>
+        </RadioButton>
+        <RadioButton x:Name="NoOption" Style="{StaticResource SideOption}" GroupName="choice" Checked="OnChoiceChanged">
+          <StackPanel>
+            <TextBlock
+              Text="{loc:Tr ui.backupSetupWindow.noInstallWithoutBackups}"
+              FontSize="14"
+              FontWeight="SemiBold"
+            />
+            <TextBlock
+              Text="{loc:Tr ui.backupSetupWindow.installationCannotUndoneWouldNeed}"
+              Foreground="{StaticResource Muted}"
+              FontSize="12"
+              Margin="0,3,0,0"
+            />
+          </StackPanel>
+        </RadioButton>
+
+        <StackPanel x:Name="YesPanel" Margin="0,10,0,0">
+          <TextBlock
+            Text="{loc:Tr ui.backupSetupWindow.folder}"
+            Foreground="{StaticResource Muted}"
+            FontSize="12"
+            Margin="2,0,0,6"
+          />
+          <DockPanel>
+            <Button
+              x:Name="BrowseButton"
+              DockPanel.Dock="Right"
+              Content="{loc:Tr ui.backupSetupWindow.browse}"
+              Style="{StaticResource Ghost}"
+              Margin="8,0,0,0"
+              Click="OnBrowse"
+            />
+            <TextBox x:Name="FolderBox" TextChanged="OnInputChanged" />
+          </DockPanel>
+          <TextBlock
+            x:Name="FolderInfo"
+            Foreground="{StaticResource Muted}"
+            FontSize="12"
+            Margin="2,6,0,14"
+            TextWrapping="Wrap"
+          />
+
+          <TextBlock
+            Text="{loc:Tr ui.backupSetupWindow.storageAllowance}"
+            Foreground="{StaticResource Muted}"
+            FontSize="12"
+            Margin="2,0,0,6"
+          />
+          <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="QuotaBox" Width="120" Text="25" TextChanged="OnInputChanged" />
+            <RadioButton
+              x:Name="UnitMb"
+              Content="{loc:Tr ui.backupSetupWindow.unitMegabytes}"
+              Style="{StaticResource UnitChip}"
+              GroupName="unit"
+              Checked="OnInputChanged"
+            />
+            <RadioButton
+              x:Name="UnitGb"
+              Content="{loc:Tr ui.backupSetupWindow.unitGigabytes}"
+              Style="{StaticResource UnitChip}"
+              GroupName="unit"
+              IsChecked="True"
+              Checked="OnInputChanged"
+            />
+          </StackPanel>
+          <TextBlock
+            x:Name="QuotaInfo"
+            Foreground="{StaticResource Muted}"
+            FontSize="12"
+            Margin="2,6,0,0"
+            TextWrapping="Wrap"
+          />
+        </StackPanel>
+
+        <WrapPanel Margin="0,14,0,0">
+          <Button
+            x:Name="PruneBackupsButton"
+            Content="{loc:Tr backup.manage.prune}"
+            Style="{StaticResource Ghost}"
+            Click="OnPruneBackups"
+            Margin="0,0,8,0"
+          />
+          <Button
+            x:Name="ResetBackupsButton"
+            Content="{loc:Tr backup.manage.reset}"
+            Style="{StaticResource Ghost}"
+            Click="OnResetBackups"
+          />
+        </WrapPanel>
+        <Border
+          x:Name="ErrorBox"
+          Background="#3A1F1F"
+          CornerRadius="8"
+          Padding="12,8"
+          Margin="0,14,0,0"
+          Visibility="Collapsed"
+        >
+          <TextBlock x:Name="ErrorText" Foreground="{StaticResource Bad}" TextWrapping="Wrap" />
+        </Border>
+
+        <DockPanel Margin="0,22,0,0">
+          <Button
+            DockPanel.Dock="Right"
+            x:Name="SaveButton"
+            Content="{loc:Tr ui.common.done}"
+            Style="{StaticResource Primary}"
+            MinWidth="140"
+            Click="OnSave"
+          />
+          <Button
+            DockPanel.Dock="Right"
+            Content="{loc:Tr ui.backupSetupWindow.decideLater}"
+            Style="{StaticResource Ghost}"
+            Margin="0,0,10,0"
+            Click="OnLater"
+          />
+          <TextBlock />
+        </DockPanel>
+      </StackPanel>
+    </StackPanel>
+  </Border>
+</Window>

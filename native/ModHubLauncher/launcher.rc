@@ -1,0 +1,25 @@
+#include <winres.h>
+1 ICON "app.ico"
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "041904B0"
+    BEGIN
+      VALUE "CompanyName", "VirtuOzZ"
+      VALUE "FileDescription", "Mod Hub by VirtuOzZ"
+      VALUE "ProductName", "Mod Hub by VirtuOzZ"
+      VALUE "OriginalFilename", "Mod Hub.exe"
+      VALUE "FileVersion", "1.0.0.0"
+      VALUE "ProductVersion", "1.0.0.0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x419, 1200
+  END
+END

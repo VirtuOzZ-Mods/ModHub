@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\GTAModManager.Core\GTAModManager.Core.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><AssemblyName>gmm</AssemblyName>
+    <!-- The UAC prompt shows this description, so the user can see Mod Hub is the one asking for rights. -->
+    <AssemblyTitle>Mod Hub by VirtuOzZ — установщик</AssemblyTitle>
+    <Product>Mod Hub by VirtuOzZ</Product>
+    <Company>VirtuOzZ</Company>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+</Project>

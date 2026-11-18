@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.24)
+project(ModHubLauncher LANGUAGES CXX RC)
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
+set(CMAKE_CXX_STANDARD 20)
+add_executable(ModHubLauncher WIN32 launcher.cpp launcher.rc)
+target_compile_definitions(ModHubLauncher PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN)
+target_compile_options(ModHubLauncher PRIVATE /utf-8)
+set_target_properties(ModHubLauncher PROPERTIES OUTPUT_NAME "Mod Hub")

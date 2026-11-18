@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GTAModManager.App/GTAModManager.App.csproj" />
+    <Project Path="src/GTAModManager.Cli/GTAModManager.Cli.csproj" />
+    <Project Path="src/GTAModManager.Core/GTAModManager.Core.csproj" />
+    <Project Path="src/GTAModManager.Probe/GTAModManager.Probe.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GTAModManager.Core.Tests/GTAModManager.Core.Tests.csproj" />
+  </Folder>
+</Solution>

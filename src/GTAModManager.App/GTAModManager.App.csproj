@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\GTAModManager.Core\GTAModManager.Core.csproj" />
+    <ProjectReference Include="..\GTAModManager.Cli\GTAModManager.Cli.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <AssemblyTitle>Mod Hub by VirtuOzZ</AssemblyTitle>
+    <AssemblyName>ModHub</AssemblyName>
+    <Product>Mod Hub by VirtuOzZ</Product>
+    <Company>VirtuOzZ</Company>
+    <Copyright>VirtuOzZ</Copyright>
+    <Description>Mod Hub by VirtuOzZ — менеджер модов GTA V</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Embedded browser for mod pages (Recommendations); without the WebView2 runtime the system browser is used. -->
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="app.ico" />
+    <Resource Include="Fonts\*.ttf" />
+    <None
+      Update="Fonts\Inter-LICENSE.txt"
+      CopyToOutputDirectory="PreserveNewest"
+      CopyToPublishDirectory="PreserveNewest"
+    />
+    <Resource Include="Discover\Assets\virtuozz-avatar.png" />
+    <Resource Include="Discover\Assets\covers\*.png;Discover\Assets\covers\*.jpg" />
+    <None Remove="app-256.png" />
+    <!-- Developer guide (Settings): one source for the repository and the app. -->
+    <EmbeddedResource
+      Include="..\..\docs\developer\developer-guide.*.md"
+      LogicalName="DeveloperGuide.%(Filename)%(Extension)"
+      WithCulture="false"
+    />
+  </ItemGroup>
+  <ItemGroup>
+    <None
+      Update="Components\Legacy\GMMPedSelector.asi"
+      CopyToOutputDirectory="PreserveNewest"
+      CopyToPublishDirectory="PreserveNewest"
+    />
+    <!-- RageOpenV is not shipped: it is downloaded from its authors' GitHub release (Core/Base/RageOpenVDownloads.cs). -->
+  </ItemGroup>
+</Project>

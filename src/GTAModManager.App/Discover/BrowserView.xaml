@@ -1,0 +1,82 @@
+<UserControl
+  x:Class="GTAModManager.App.Discover.BrowserView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:loc="clr-namespace:GTAModManager.App.Localization"
+>
+  <DockPanel>
+    <!-- Browser toolbar -->
+    <Border
+      DockPanel.Dock="Top"
+      Background="{StaticResource Panel}"
+      BorderBrush="{StaticResource Line}"
+      BorderThickness="0,0,0,1"
+      Padding="14,8"
+    >
+      <DockPanel>
+        <Button
+          DockPanel.Dock="Left"
+          Content="{loc:Tr ui.discover.recommendations}"
+          Style="{StaticResource Ghost}"
+          Padding="12,6"
+          Margin="0,0,12,0"
+          Click="OnClose"
+          ToolTip="{loc:Tr ui.discover.returnModShowcase}"
+        />
+        <!-- Icons use an explicit TextBlock with the symbol font (the global TextBlock style would replace the font) -->
+        <Button
+          DockPanel.Dock="Left"
+          x:Name="BackButton"
+          Style="{StaticResource Ghost}"
+          Padding="10,6"
+          Margin="0,0,4,0"
+          Click="OnBack"
+          IsEnabled="False"
+          ToolTip="{loc:Tr ui.discover.back}"
+        >
+          <TextBlock Text="&#xE72B;" FontFamily="Segoe MDL2 Assets" FontSize="13" />
+        </Button>
+        <Button
+          DockPanel.Dock="Left"
+          x:Name="ForwardButton"
+          Style="{StaticResource Ghost}"
+          Padding="10,6"
+          Margin="0,0,4,0"
+          Click="OnForward"
+          IsEnabled="False"
+          ToolTip="{loc:Tr ui.discover.forward}"
+        >
+          <TextBlock Text="&#xE72A;" FontFamily="Segoe MDL2 Assets" FontSize="13" />
+        </Button>
+        <Button
+          DockPanel.Dock="Left"
+          Style="{StaticResource Ghost}"
+          Padding="10,6"
+          Margin="0,0,12,0"
+          Click="OnReload"
+          ToolTip="{loc:Tr ui.discover.refreshPage}"
+        >
+          <TextBlock Text="&#xE72C;" FontFamily="Segoe MDL2 Assets" FontSize="13" />
+        </Button>
+        <Button
+          DockPanel.Dock="Right"
+          Content="{loc:Tr ui.discover.openBrowser}"
+          Style="{StaticResource Ghost}"
+          Padding="12,6"
+          Margin="12,0,0,0"
+          Click="OnExternal"
+          ToolTip="{loc:Tr ui.discover.openPageDefaultBrowser}"
+        />
+        <Border Background="#121212" CornerRadius="8" Padding="12,6" VerticalAlignment="Center">
+          <TextBlock
+            x:Name="AddressText"
+            Foreground="{StaticResource Muted}"
+            FontSize="12.5"
+            TextTrimming="CharacterEllipsis"
+          />
+        </Border>
+      </DockPanel>
+    </Border>
+    <Grid x:Name="WebHost" Background="#0B0B0B" />
+  </DockPanel>
+</UserControl>

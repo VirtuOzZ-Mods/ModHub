@@ -1,0 +1,96 @@
+<UserControl
+  x:Class="GTAModManager.App.Base.BaseSetupCard"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:loc="clr-namespace:GTAModManager.App.Localization"
+>
+  <Border
+    Background="{StaticResource Card}"
+    CornerRadius="14"
+    Padding="20,16"
+    Margin="0,0,0,14"
+    BorderBrush="#3A2A10"
+    BorderThickness="1"
+  >
+    <StackPanel>
+      <DockPanel>
+        <Button
+          x:Name="InstallButton"
+          DockPanel.Dock="Right"
+          Content="{loc:Tr ui.base.installRageopenv}"
+          Style="{StaticResource Primary}"
+          VerticalAlignment="Top"
+          Click="OnInstall"
+        />
+        <StackPanel Margin="0,0,16,0">
+          <TextBlock
+            x:Name="HeadingText"
+            Text="{loc:Tr ui.base.preparingGtaVMods}"
+            FontSize="17"
+            FontWeight="SemiBold"
+          />
+          <TextBlock
+            Foreground="{StaticResource Muted}"
+            Margin="0,3,0,0"
+            TextWrapping="Wrap"
+            x:Name="DescriptionText"
+            Text="{loc:Tr ui.base.installMissingComponentsSelectedGame}"
+          />
+        </StackPanel>
+      </DockPanel>
+
+      <StackPanel x:Name="Rows" Margin="0,12,0,0" />
+
+      <!-- ScriptHookVDotNet choice for Legacy -->
+      <WrapPanel x:Name="ShvdnChoice" Orientation="Horizontal" Margin="30,2,0,0" Visibility="Collapsed">
+        <TextBlock
+          Text="{loc:Tr ui.base.whichScripthookvdotnetInstall}"
+          Foreground="{StaticResource Muted}"
+          VerticalAlignment="Center"
+          Margin="0,0,10,0"
+        />
+        <RadioButton
+          x:Name="ShvdnNightly"
+          Style="{StaticResource UnitChip}"
+          GroupName="shvdn"
+          Content="{loc:Tr ui.base.nightly}"
+          Margin="0,0,6,0"
+          ToolTip="{loc:Tr ui.base.officialScripthookvdotnetNightlyBuildLatest}"
+        />
+        <RadioButton
+          x:Name="ShvdnEnhanced"
+          Style="{StaticResource UnitChip}"
+          GroupName="shvdn"
+          Content="{loc:Tr ui.base.legacyEnhancedChihebBacha}"
+          ToolTip="{loc:Tr ui.base.scripthookvdotnetEnhancedBuildOneVersion}"
+        />
+      </WrapPanel>
+      <Button
+        x:Name="SourceButton"
+        Content="{loc:Tr ui.base.openAuthorSPage}"
+        Style="{StaticResource Ghost}"
+        Click="OnSource"
+        HorizontalAlignment="Left"
+        Margin="0,8,0,0"
+      />
+
+      <ProgressBar
+        x:Name="Progress"
+        IsIndeterminate="True"
+        Height="4"
+        Margin="0,12,0,0"
+        Foreground="{StaticResource Accent}"
+        Background="#2A2A2A"
+        BorderThickness="0"
+        Visibility="Collapsed"
+      />
+      <TextBlock
+        x:Name="StatusText"
+        Foreground="{StaticResource Muted}"
+        FontSize="12"
+        Margin="0,8,0,0"
+        TextWrapping="Wrap"
+      />
+    </StackPanel>
+  </Border>
+</UserControl>

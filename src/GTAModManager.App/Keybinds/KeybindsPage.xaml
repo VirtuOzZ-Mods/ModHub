@@ -1,0 +1,383 @@
+<UserControl
+  x:Class="GTAModManager.App.Keybinds.KeybindsPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:loc="clr-namespace:GTAModManager.App.Localization"
+>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <!-- Header and filters -->
+    <DockPanel Margin="0,0,0,12">
+      <Button
+        DockPanel.Dock="Right"
+        x:Name="RescanButton"
+        Content="{loc:Tr ui.common.refresh}"
+        Style="{StaticResource Primary}"
+        Click="OnRescan"
+      />
+      <Button
+        DockPanel.Dock="Right"
+        Content="{loc:Tr ui.keybinds.restoreWarnings}"
+        Style="{StaticResource Ghost}"
+        Click="OnResetPotential"
+        Margin="0,0,8,0"
+      />
+      <StackPanel>
+        <TextBlock Text="{loc:Tr ui.common.hotkeys}" Style="{StaticResource PageTitle}" />
+        <TextBlock x:Name="SummaryText" Foreground="{StaticResource Muted}" Margin="0,3,0,0" TextWrapping="Wrap" />
+      </StackPanel>
+    </DockPanel>
+
+    <StackPanel Grid.Row="1" Margin="0,0,0,10">
+      <WrapPanel Margin="0,0,0,10">
+        <RadioButton
+          x:Name="KeyboardView"
+          Style="{StaticResource UnitChip}"
+          GroupName="kbview"
+          IsChecked="True"
+          Margin="0,0,6,0"
+          Content="{loc:Tr ui.keybinds.viewKeyboard}"
+          Checked="OnViewChanged"
+        />
+        <RadioButton
+          x:Name="GamepadView"
+          Style="{StaticResource UnitChip}"
+          GroupName="kbview"
+          Margin="0,0,18,0"
+          Content="{loc:Tr ui.keybinds.viewGamepad}"
+          Checked="OnViewChanged"
+        />
+        <StackPanel x:Name="LayoutChips" Orientation="Horizontal" Visibility="Collapsed">
+          <TextBlock
+            Text="{loc:Tr ui.keybinds.padLayout}"
+            Foreground="{StaticResource Muted}"
+            VerticalAlignment="Center"
+            Margin="0,0,8,0"
+          />
+          <RadioButton
+            x:Name="XboxLayout"
+            Style="{StaticResource UnitChip}"
+            GroupName="padlayout"
+            Margin="0,0,6,0"
+            Content="Xbox"
+            Checked="OnLayoutChanged"
+          />
+          <RadioButton
+            x:Name="PlayStationLayout"
+            Style="{StaticResource UnitChip}"
+            GroupName="padlayout"
+            Content="PlayStation"
+            Checked="OnLayoutChanged"
+          />
+        </StackPanel>
+      </WrapPanel>
+      <DockPanel Margin="0,0,0,8">
+        <Grid DockPanel.Dock="Left" Width="260">
+          <TextBox
+            x:Name="SearchBox"
+            TextChanged="OnFilterChanged"
+            ToolTip="{loc:Tr ui.keybinds.searchByActionModKey}"
+            GotKeyboardFocus="OnSearchFocus"
+            LostKeyboardFocus="OnSearchFocus"
+          />
+          <TextBlock
+            x:Name="SearchHint"
+            Text="{loc:Tr ui.keybinds.searchActionModKey}"
+            Foreground="{StaticResource Muted}"
+            IsHitTestVisible="False"
+            VerticalAlignment="Center"
+            Margin="12,0,0,0"
+          />
+        </Grid>
+        <RadioButton
+          x:Name="ShowGame"
+          DockPanel.Dock="Left"
+          Style="{StaticResource UnitChip}"
+          Margin="10,0,0,0"
+          IsChecked="True"
+          Content="{loc:Tr ui.keybinds.gtaVControls}"
+          ToolTip="{loc:Tr ui.keybinds.showDefaultGameControlsSettings}"
+          Click="OnToggleGame"
+        />
+        <TextBlock />
+      </DockPanel>
+      <WrapPanel x:Name="ModFilterPanel" />
+    </StackPanel>
+
+    <Grid Grid.Row="2">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" MinHeight="180" />
+      </Grid.RowDefinitions>
+
+      <!-- Full-width keyboard (scales with the window) -->
+      <Border
+        x:Name="KeyboardPanel"
+        Background="{StaticResource InsetFill}"
+        BorderBrush="{StaticResource InsetEdge}"
+        BorderThickness="1"
+        CornerRadius="12"
+        Padding="12"
+        MaxHeight="380"
+      >
+        <ContentControl x:Name="KeyboardHost" />
+      </Border>
+      <WrapPanel Grid.Row="1" Margin="0,10,0,10" x:Name="Legend" />
+
+      <!-- Details -->
+      <Border Grid.Row="2" Background="{StaticResource Card}" CornerRadius="12">
+        <DockPanel>
+          <StackPanel DockPanel.Dock="Top" Margin="16,14,16,8">
+            <Border
+              x:Name="SwitchBar"
+              Visibility="Collapsed"
+              Background="{StaticResource InsetFill}"
+              BorderBrush="{StaticResource InsetEdge}"
+              BorderThickness="1"
+              CornerRadius="10"
+              Padding="12,8"
+              Margin="0,0,0,10"
+            >
+              <DockPanel>
+                <Button
+                  x:Name="SwitchButton"
+                  DockPanel.Dock="Right"
+                  Style="{StaticResource Ghost}"
+                  Padding="10,5"
+                  Click="OnSwitch"
+                />
+                <StackPanel Margin="0,0,10,0">
+                  <TextBlock x:Name="SwitchTitle" FontWeight="SemiBold" TextWrapping="Wrap" />
+                  <TextBlock
+                    x:Name="SwitchNote"
+                    Foreground="{StaticResource Muted}"
+                    FontSize="11.5"
+                    TextWrapping="Wrap"
+                    Margin="0,2,0,0"
+                  />
+                </StackPanel>
+              </DockPanel>
+            </Border>
+            <TextBlock
+              x:Name="DetailsTitle"
+              FontFamily="Bahnschrift SemiBold, Bahnschrift, Segoe UI"
+              FontSize="17.5"
+              TextWrapping="Wrap"
+            />
+            <TextBlock
+              x:Name="DetailsHint"
+              Foreground="{StaticResource Muted}"
+              FontSize="12"
+              Margin="0,3,0,0"
+              TextWrapping="Wrap"
+            />
+          </StackPanel>
+          <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="16,0,10,14">
+            <StackPanel>
+            <ItemsControl x:Name="PadList" Visibility="Collapsed">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border
+                    Background="{StaticResource InsetFill}"
+                    BorderBrush="{StaticResource InsetEdge}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="12,10"
+                    Margin="0,0,0,8"
+                  >
+                    <DockPanel>
+                      <Button
+                        DockPanel.Dock="Right"
+                        Content="{loc:Tr ui.keybinds.padChange}"
+                        Style="{StaticResource Ghost}"
+                        Padding="10,5"
+                        VerticalAlignment="Center"
+                        Tag="{Binding Id}"
+                        Click="OnPadEdit"
+                      />
+                      <Border
+                        DockPanel.Dock="Left"
+                        MinWidth="74"
+                        CornerRadius="8"
+                        Padding="10,6"
+                        Margin="0,0,12,0"
+                        Background="{StaticResource Card}"
+                        VerticalAlignment="Center"
+                      >
+                        <TextBlock
+                          Text="{Binding ButtonText}"
+                          FontWeight="Bold"
+                          Foreground="{StaticResource Accent}"
+                          HorizontalAlignment="Center"
+                        />
+                      </Border>
+                      <StackPanel>
+                        <DockPanel>
+                          <Border
+                            DockPanel.Dock="Left"
+                            Width="10"
+                            Height="10"
+                            CornerRadius="5"
+                            Background="{Binding ModBrush}"
+                            Margin="0,0,8,0"
+                            VerticalAlignment="Center"
+                          />
+                          <TextBlock Text="{Binding ModName}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                        </DockPanel>
+                        <TextBlock Text="{Binding Action}" FontSize="13.5" Margin="0,4,0,0" TextWrapping="Wrap" />
+                        <TextBlock
+                          Text="{Binding Where}"
+                          Foreground="{StaticResource Muted}"
+                          FontSize="11.5"
+                          TextWrapping="Wrap"
+                          Margin="0,4,0,0"
+                        />
+                      </StackPanel>
+                    </DockPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl x:Name="DetailsList">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Border
+                    Background="{StaticResource InsetFill}"
+                    BorderBrush="{StaticResource InsetEdge}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="12,10"
+                    Margin="0,0,0,8"
+                  >
+                    <StackPanel>
+                      <DockPanel>
+                        <Border
+                          DockPanel.Dock="Left"
+                          Width="10"
+                          Height="10"
+                          CornerRadius="5"
+                          Background="{Binding ModBrush}"
+                          Margin="0,0,8,0"
+                          VerticalAlignment="Center"
+                        />
+                        <Border
+                          DockPanel.Dock="Right"
+                          CornerRadius="5"
+                          Padding="7,1"
+                          Background="{Binding StatusBrush}"
+                          VerticalAlignment="Center"
+                        >
+                          <TextBlock Text="{Binding StatusText}" FontSize="11" FontWeight="Bold" Foreground="#120C02" />
+                        </Border>
+                        <TextBlock
+                          Text="{Binding ModName}"
+                          FontWeight="SemiBold"
+                          TextTrimming="CharacterEllipsis"
+                          Margin="0,0,8,0"
+                        />
+                      </DockPanel>
+                      <TextBlock Text="{Binding Action}" FontSize="13.5" Margin="0,6,0,0" TextWrapping="Wrap" />
+                      <TextBlock Margin="0,4,0,0">
+                        <Run
+                          Text="{Binding ChordText, Mode=OneWay}"
+                          FontWeight="Bold"
+                          Foreground="{StaticResource Accent}"
+                        />
+                        <Run Text="{Binding ContextText, Mode=OneWay}" Foreground="{StaticResource Muted}" />
+                      </TextBlock>
+                      <TextBlock
+                        Text="{Binding Where}"
+                        Foreground="{StaticResource Muted}"
+                        FontSize="11.5"
+                        TextWrapping="Wrap"
+                        Margin="0,4,0,0"
+                      />
+                      <TextBlock
+                        Text="{Binding Note}"
+                        Visibility="{Binding NoteVisibility}"
+                        Foreground="{StaticResource Warn}"
+                        FontSize="11.5"
+                        TextWrapping="Wrap"
+                        Margin="0,4,0,0"
+                      />
+                      <ItemsControl ItemsSource="{Binding Conflicts}" Margin="0,4,0,0">
+                        <ItemsControl.ItemTemplate>
+                          <DataTemplate>
+                            <StackPanel>
+                              <TextBlock
+                                Text="{Binding Text}"
+                                Foreground="{Binding Brush}"
+                                FontSize="11.5"
+                                TextWrapping="Wrap"
+                                Margin="0,2,0,0"
+                              />
+                              <Button
+                                Content="{loc:Tr ui.keybinds.noKeyConflicts}"
+                                Style="{StaticResource Ghost}"
+                                Padding="10,5"
+                                Margin="0,5,0,4"
+                                HorizontalAlignment="Left"
+                                Visibility="{Binding AcknowledgeVisibility}"
+                                Tag="{Binding}"
+                                Click="OnPotentialConfirmed"
+                                ToolTip="{loc:Tr ui.keybinds.iCheckedTheseBindingsGame}"
+                              />
+                            </StackPanel>
+                          </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                      </ItemsControl>
+                      <WrapPanel Margin="0,8,0,0">
+                        <Button
+                          Content="{loc:Tr ui.keybinds.changeKey}"
+                          Style="{StaticResource Ghost}"
+                          Padding="10,5"
+                          Margin="0,0,6,0"
+                          Tag="{Binding Id}"
+                          Visibility="{Binding EditVisibility}"
+                          Click="OnEdit"
+                        />
+                        <Button
+                          Content="{Binding DefaultText}"
+                          Style="{StaticResource Ghost}"
+                          Padding="10,5"
+                          Margin="0,0,6,0"
+                          Tag="{Binding Id}"
+                          Visibility="{Binding DefaultVisibility}"
+                          Click="OnRestoreDefault"
+                        />
+                        <Button
+                          Content="{loc:Tr ui.keybinds.confirm}"
+                          Style="{StaticResource Ghost}"
+                          Padding="10,5"
+                          Margin="0,0,6,0"
+                          Tag="{Binding Id}"
+                          Visibility="{Binding ConfirmVisibility}"
+                          Click="OnConfirm"
+                        />
+                        <Button
+                          Content="{loc:Tr ui.keybinds.disable}"
+                          Style="{StaticResource Ghost}"
+                          Padding="10,5"
+                          Tag="{Binding Id}"
+                          Visibility="{Binding DisableVisibility}"
+                          Click="OnDisable"
+                        />
+                      </WrapPanel>
+                    </StackPanel>
+                  </Border>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            </StackPanel>
+          </ScrollViewer>
+        </DockPanel>
+      </Border>
+    </Grid>
+  </Grid>
+</UserControl>

@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.24)
+project(GMMPedSelector LANGUAGES CXX)
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+set(CMAKE_CXX_STANDARD 20)
+enable_testing()
+add_executable(selector_tests tests.cpp)
+add_test(NAME selector_core COMMAND selector_tests)
+option(BUILD_ASI "Build Windows ASI" ON)
+if(WIN32 AND BUILD_ASI)
+  add_custom_command(OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/ScriptHookV.lib"
+    COMMAND "${CMAKE_AR}" /nologo /machine:x64 /def:${CMAKE_CURRENT_SOURCE_DIR}/ScriptHookV.def /out:${CMAKE_CURRENT_BINARY_DIR}/ScriptHookV.lib
+    DEPENDS ScriptHookV.def VERBATIM)
+  add_library(GMMPedSelector SHARED selector.cpp "${CMAKE_CURRENT_BINARY_DIR}/ScriptHookV.lib")
+  target_compile_definitions(GMMPedSelector PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
+  target_link_libraries(GMMPedSelector PRIVATE user32 "${CMAKE_CURRENT_BINARY_DIR}/ScriptHookV.lib")
+  set_target_properties(GMMPedSelector PROPERTIES PREFIX "" SUFFIX ".asi")
+endif()
