@@ -4,8 +4,6 @@ Mod Hub is developed and maintained by **VirtuOzZ**. It is an open project: bug 
 features and translations from anyone are welcome. VirtuOzZ reviews and merges pull requests and keeps
 the overall direction of the project.
 
-[Русская версия ниже](#участие-в-разработке-mod-hub).
-
 ## Reporting a bug
 
 Open an [issue](../../issues) with:
@@ -32,24 +30,3 @@ Open an [issue](../../issues) with:
 Third-party mods and tools are never added to the repository: Mod Hub downloads them from their authors'
 pages. Please respect their licences.
 
----
-
-## Участие в разработке Mod Hub
-
-Mod Hub разрабатывает и поддерживает **VirtuOzZ**. Проект открытый: сообщения об ошибках, исправления,
-новые функции и переводы может присылать любой. VirtuOzZ проверяет и принимает pull request'ы и
-определяет направление развития проекта.
-
-**Ошибка** — откройте [issue](../../issues): что делали, что ожидали, что получилось; Legacy или Enhanced и
-версия игры; номер сборки Mod Hub (Настройки, строка под заголовком); отчёт из
-`Mod Hub by VirtuOzZ\Data\Logs`, если было сообщение о непредвиденной ошибке.
-
-**Pull request** — сделайте форк и ветку от `main`, прочитайте
-[документацию для разработчиков](docs/developer/developer-guide.ru.md) и соблюдайте правила проекта:
-любое изменение игры — отменяемая транзакция, оригинальные файлы Rockstar не меняются; Mod Hub пишет
-для себя только через `AppPaths` и `GameInstall.WorkDir`; все тексты интерфейса — через `L.T(...)` с
-переводами в `ru.json`, `en.json` и `uk.json`; комментарии в коде на английском; форматирование
-`dotnet csharpier format .`; тесты в `tests/GTAModManager.Core.Tests`. Перед отправкой
-`dotnet test GTAModManager.slnx` должен проходить полностью.
-
-Сторонние моды и программы в репозиторий не добавляются: Mod Hub скачивает их со страниц авторов.

@@ -1,18 +1,23 @@
-# Переводы Mod Hub
+# Mod Hub translations
 
-Система языков работает без перезапуска. Встроены полные русский, украинский и английский пакеты. В списке отображаются только названия языков, без имени автора. Пользовательские неполные пакеты по-прежнему используют резервный перевод для недостающих строк.
+The language system works without a restart. Complete Russian, Ukrainian and English packs are built in. The list
+shows only language names, without the author's name. Incomplete user packs still fall back to another translation
+for missing strings.
 
-## Как сделать свой перевод
+## Making your own translation
 
-1. Откройте «Настройки → Язык интерфейса → Создать шаблон».
-2. Сохраните JSON-файл. В нём уже есть все текущие ключи и исходные строки.
-3. Измените `id` на свой уникальный идентификатор, `culture` на код языка, `displayName` на название, `author` на имя автора и `version` на версию перевода. Не используйте префикс `official.`.
-4. Переведите значения в `strings`, сохраняя ключи и параметры `{0}`, `{1}` и т. д. Не переводите сами имена ключей. Файл сохраняется в UTF-8.
-5. Кнопкой «Открыть папку переводов» откройте `Languages`, скопируйте туда файл и нажмите «Обновить список». Выберите свой пакет.
+1. Open "Settings → Interface language → Create template".
+2. Save the JSON file. It already contains every current key and its source string.
+3. Change `id` to your own unique identifier, `culture` to the language code, `displayName` to the language name,
+   `author` to the translator's name and `version` to the translation version. Do not use the `official.` prefix.
+4. Translate the values in `strings`, keeping the keys and the `{0}`, `{1}`… parameters. Do not translate the key
+   names themselves. Save the file as UTF-8.
+5. Use "Open translations folder" to open `Languages`, copy the file there and click "Refresh list". Choose your pack.
 
-Переводы лежат в папке `Languages` рядом с `Mod Hub.exe`. Не нужно изменять исходники или устанавливать DLL. Можно хранить несколько переводов одной культуры с разными ID и авторами.
+Translations live in the `Languages` folder next to `Mod Hub.exe`. There is no need to change the sources or install a
+DLL. Several translations of one culture can coexist with different IDs and authors.
 
-Минимальный пример частичного пакета:
+A minimal partial pack:
 
 ```json
 {
@@ -29,13 +34,17 @@
 }
 ```
 
-Отсутствующие строки берутся из официального пакета той же культуры, затем из русского исходного каталога. Несовместимые параметры строки вызывают её пропуск и резервный перевод. Повреждённый JSON или несовместимая схема отклоняются с отчётом. Встроенные пакеты нельзя перезаписать внешним ID.
+Missing strings come from the official pack of the same culture, then from the Russian source catalog. A string whose
+parameters do not match is skipped and the fallback is used. Damaged JSON or an incompatible schema is rejected with a
+report. Built-in packs cannot be overwritten by an external ID.
 
-## Параметры и формы множественного числа
+## Parameters and plural forms
 
-Переставлять параметры можно, удалять или добавлять их номера нельзя. Если исходная строка содержит `{0}` и `{1}`, перевод должен сохранить оба. `{0:N0}`, `{0:0.0}` и `{0:d MMM yyyy}` — числовые/датовые форматы .NET. Буквальные фигурные скобки записываются `{{` и `}}`.
+Parameters may be reordered, but their numbers may not be removed or added. If the source string has `{0}` and `{1}`,
+the translation must keep both. `{0:N0}`, `{0:0.0}` and `{0:d MMM yyyy}` are .NET number/date formats. Literal braces
+are written as `{{` and `}}`.
 
-Вместо строки можно использовать объект форм:
+Instead of a string you can use an object of forms:
 
 ```json
 {
@@ -46,34 +55,51 @@
 }
 ```
 
-`other` обязателен, все формы должны использовать одинаковый набор параметров. Количество — первый аргумент строки. RU/UK учитывают окончания и исключения 11–14, дробные значения используют `other`; английский — `one` для единицы. Никаких выражений или программного кода в пакетах нет.
+`other` is required, and all forms must use the same set of parameters. The count is the string's first argument.
+RU/UK follow their endings and the 11–14 exceptions, fractional values use `other`; English uses `one` for one.
+Packs contain no expressions or program code.
 
-## Совместимость
+## Compatibility
 
-Текст пакета выводится как обычный текст, не как XAML/HTML. Ссылки не открываются автоматически. Служебные ключи, пути, регулярные выражения, алиасы конфигураций, схемы JSON, расширения и шаблоны выбора файлов не переводятся. В файловых диалогах переводятся только подписи фильтров; `*.zip` и другая служебная грамматика остаются в коде.
+Pack text is shown as plain text, not as XAML/HTML. Links are not opened automatically. Service keys, paths, regular
+expressions, configuration aliases, JSON schemas, extensions and file-picker patterns are not translated. In file
+dialogs only the filter labels are translated; `*.zip` and other service syntax stay in code.
 
-Названия модов, авторы, README и содержимое пользовательских файлов не переводятся. Собственные пояснения встроенного каталога рекомендаций используют ресурсы; внешние каталоги и метаданные сохраняются как данные.
+Mod names, authors, README files and the contents of user files are not translated. The built-in recommendations
+catalog's own notes use resources; external catalogs and metadata are kept as data.
 
-Ключи имеют вид `слой.раздел.смысл`: `ui.peds.loadingImages`, `core.installation.saveTable`, `cli.nothingInstall`. Слой (`ui`, `core`, `cli`) обязателен: по префиксам `core.` и `cli.` сопоставляются сохранённые ранее сообщения. При правке текста ключ сохраняйте, если смысл тот же; новый смысл — новый ключ. `catalog.*`, `settings.language.*`, `format.*` устроены так же. Версия схемы отделена от версии пользовательского перевода.
+Keys look like `layer.section.meaning`: `ui.peds.loadingImages`, `core.installation.saveTable`, `cli.nothingInstall`.
+The layer (`ui`, `core`, `cli`) is required: previously saved messages are matched by the `core.` and `cli.` prefixes.
+When editing a text, keep the key if the meaning stays the same; a new meaning needs a new key. `catalog.*`,
+`settings.language.*` and `format.*` follow the same rules. The schema version is separate from the version of a user
+translation.
 
-## Для разработчиков
+## For developers
 
-- `L.T(key, args)` — собственный текст. Передавайте числа и даты как типизированные аргументы, а не заранее отформатированные русские строки.
-- `L.Join`, `L.Truncate`, `L.TrimEnd` сохраняют сведения о переводе в составном тексте.
-- `L.Owned` разрешён только в явно отмеченных местах показа собственных Core/CLI-сообщений. Не применять к названиям, README, путям или произвольным внешним данным.
-- `L.Display` повторно отображает кешированную строку с явным токеном на текущем языке; внешний текст сохраняется.
-- `L.Source` даёт исходный русский текст для совместимой записи в старую очередь, не меняя выбранный язык.
-- XAML: `xmlns:loc="clr-namespace:GTAModManager.App.Localization"` и `Text="{loc:Tr settings.language.title}"`.
-- Программные WPF-свойства автоматически обновляют только строки с явным происхождением из `L.T`; совпавший по содержимому внешний текст не переводится. Для `Run` используйте `LiveLocalization.CreateRun`, поскольку текстовый контейнер теряет идентичность строки.
-- Не меняйте глобальный CurrentCulture: он используется чтением старых конфигураций. Отображение форматируется отдельной культурой выбранного пакета.
+- `L.T(key, args)` is Mod Hub's own text. Pass numbers and dates as typed arguments, not as pre-formatted strings.
+- `L.Join`, `L.Truncate`, `L.TrimEnd` keep translation information in composite text.
+- `L.Owned` is allowed only where Mod Hub's own Core/CLI messages are explicitly shown. Never use it on names,
+  README files, paths or arbitrary external data.
+- `L.Display` shows a cached string with an explicit token again in the current language; external text is kept.
+- `L.Source` gives the Russian source text for compatible writing into the old queue without changing the chosen
+  language.
+- XAML: `xmlns:loc="clr-namespace:GTAModManager.App.Localization"` and `Text="{loc:Tr settings.language.title}"`.
+- Programmatic WPF properties update automatically only for strings that explicitly come from `L.T`; external text
+  that happens to match is not translated. For `Run` use `LiveLocalization.CreateRun`, because a text container loses
+  the string's identity.
+- Do not change the global CurrentCulture: reading old configurations depends on it. Display is formatted with the
+  chosen pack's own culture.
 
-Проверки:
+Checks:
 
 ```powershell
 dotnet test tests/GTAModManager.Core.Tests/GTAModManager.Core.Tests.csproj -m:1 -nr:false -p:NuGetAudit=false
 dotnet run --project tests/GTAModManager.Localization.UiHarness/GTAModManager.Localization.UiHarness.csproj -p:NuGetAudit=false
 ```
 
-В sandbox тестовому процессу может потребоваться разрешение на локальное IPC-соединение. Существующие CA1416-предупреждения Core относятся к Windows API и не внесены локализацией.
+In a sandbox the test process may need permission for a local IPC connection. The existing CA1416 warnings in Core
+concern Windows APIs and are not caused by localization.
 
-Живое переключение дополнительно обходит логическое и визуальное дерево всех открытых окон, включая скрытые страницы и контекстные меню. Одного обработчика класса Loaded недостаточно: WPF не рассылает это событие всем программным дочерним элементам. UI harness показывает настоящее окно и проверяет повторные переключения RU/EN/UK, а не только отсоединённые контролы.
+Live switching also walks the logical and visual tree of every open window, including hidden pages and context menus.
+A single class handler for Loaded is not enough: WPF does not send that event to every programmatic child element. The
+UI harness shows a real window and checks repeated RU/EN/UK switches, not only detached controls.

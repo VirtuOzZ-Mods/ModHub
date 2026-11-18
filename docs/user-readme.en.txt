@@ -36,8 +36,8 @@ Mod Hub writes to the Windows registry only if you turn on opening .oiv files wi
 a double click (Settings).
 
 REMOVAL
-Easiest: Settings → "Remove Mod Hub…" — it can restore a clean game, keep or delete
-the backups and removes the program folder by itself. By hand:
+The "Remove Mod Hub…" button in the settings does not work yet. To remove Mod Hub,
+simply delete its folder:
 1. If you want the game back in its original state, press "Restore vanilla game" in
    Mod Hub (or undo the installs in "History and undo").
 2. If you turned on opening .oiv with a double click, turn it off in Settings.

@@ -1,198 +1,146 @@
 # Mod Hub by VirtuOzZ
 
-Менеджер модов для GTA V **Legacy** и **Enhanced** под Windows. Его цель — сделать моддинг GTA проще для
-новичков: то, что опытные игроки делают вручную по инструкциям авторов модов, Mod Hub старается делать сам.
-A mod manager for GTA V **Legacy** and **Enhanced** on Windows. [English below](#english).
+A mod manager for GTA V **Legacy** and **Enhanced** on Windows. Its goal is to make GTA modding easier for
+newcomers: what veterans do by hand from each mod's instructions, Mod Hub tries to do for you.
 
-> **Версия 0.4 beta.** Это бета: возможны ошибки, сообщайте о них в [issues](../../issues). Проект развивает один человек — VirtuOzZ, но он открыт: исправления, новые функции и
-> переводы присылайте pull request'ами (см. [«Участие в разработке»](#участие-в-разработке)).
-> **Важно:** Mod Hub проверялся только на чистой игре. Как он поведёт себя, если в GTA V или GTA V Enhanced
-> уже установлены моды (вручную, через OpenIV и т. п.), ещё не тестировалось. Перед использованием сделайте
-> резервную копию игры.
+> **Version 0.4 beta.** This is a beta: bugs are possible, please report them in [Issues](../../issues).
+> Mod Hub is developed by one person, VirtuOzZ, and it is open: fixes, new features and translations are
+> welcome as pull requests (see [Contributing](#contributing)).
+>
+> **Important:** Mod Hub has only been tested on clean games. Using it on GTA V or GTA V Enhanced that already
+> has mods installed (by hand, with OpenIV, etc.) has not been tested yet. Back up your game before using it.
 
-## Возможности
+## Features
 
-- **Установка модов** из OIV-пакетов и обычных архивов (ZIP, RAR, 7Z): add-on DLC, ASI-плагины, скрипты.
-- **Папка `mods\`**: оригинальные файлы игры не изменяются, моды подключаются через загрузчик.
-- **База для моддинга одной кнопкой**: Script Hook V, загрузчик папки `mods` (RageOpenV), ScriptHookVDotNet,
-  расширители лимитов (HeapAdjuster, Packfile/Modkit/StaticBounds Limit Adjuster); распознаёт Resource Extensions.
-- **История и отмена**: каждая установка выполняется как транзакция с резервной копией, её можно отменить.
-- **Возврат к чистой игре**: удаляет все моды и их следы, оригиналы Rockstar не трогает.
-- **Каталог модов** с проверкой совместимости с Legacy и Enhanced.
-- **Add-On PED** для Legacy со своим селектором персонажей.
-- **NaturalVision Evolved / Enhanced и LCPP**: установка выбранных компонентов из архива, который вы скачали
-  сами. На Enhanced Mod Hub ставит загрузчик NVE и переносит моды из `mods\` в папку onigiri, чтобы NVE и
-  остальные моды работали вместе.
-- **Горячие клавиши модов**: клавиатура и геймпад (подписи Xbox или PlayStation), поиск конфликтов,
-  переназначение и отключение любой клавиши.
-- **Звуки двигателя** для add-on машин: таблица машин, один звук сразу нескольким.
-- **Включение и отключение модов** без удаления.
-- **Интерфейс** на русском, английском и украинском.
-- **Без установки**: программа и все её данные лежат в одной папке, в AppData ничего не пишется.
+- **Mod installation** from OIV packages and regular archives (ZIP, RAR, 7Z): add-on DLC, ASI plugins, scripts.
+- **The `mods\` folder**: original game files are never changed; mods are loaded through a loader.
+- **Modding essentials in one click**: Script Hook V, the `mods` folder loader (RageOpenV), ScriptHookVDotNet and
+  the limit adjusters (HeapAdjuster, Packfile / Modkit / StaticBounds Limit Adjuster); Resource Extensions is recognised.
+- **History and undo**: every installation is a transaction with a backup and can be undone.
+- **Back to a clean game**: removes all mods and their traces without touching Rockstar's original files.
+- **Mod catalog** with Legacy / Enhanced compatibility.
+- **Add-On peds** for Legacy with a character selector; characters can be brought back from an old Ped Selector folder.
+- **NaturalVision Evolved / Enhanced and LCPP**: installs the components you choose from an archive you downloaded
+  yourself. On Enhanced, Mod Hub installs NVE's ASI loader and mirrors `mods\` into the onigiri folder so NVE and
+  your other mods work together.
+- **Mod hotkeys**: keyboard and gamepad (Xbox or PlayStation labels), conflict search, remapping and switching any
+  key off.
+- **Engine sounds** for add-on cars: a table of cars, one sound for several cars at once.
+- **Turn mods off and on** without deleting them.
+- **Interface** in English, Russian and Ukrainian.
+- **No installation**: the program and all its data live in one folder; nothing is written to AppData.
 
-Игра определяется автоматически (Rockstar Games Launcher, Steam, Epic Games).
+The game is detected automatically (Rockstar Games Launcher, Steam, Epic Games).
 
-## Скачать и запустить
+## Download and run
 
-1. Скачайте `ModHub-portable.zip` со страницы [Releases](../../releases).
-2. Распакуйте архив в корень системного диска — получится `C:\Mod Hub by VirtuOzZ`. Это и есть
-   установленная программа. Не распаковывайте в папку игры, в Program Files (туда нельзя писать без
-   прав администратора) и в папки, которые синхронизирует OneDrive.
-3. Запустите `C:\Mod Hub by VirtuOzZ\Mod Hub.exe`. Устанавливать .NET не нужно, всё уже внутри.
-   Сборка не подписана: если Windows SmartScreen предупредит, нажмите «Подробнее» → «Выполнить в любом случае».
+1. Download `ModHub-0.4-beta.zip` from [Releases](../../releases).
+2. Unpack it to the root of the system drive, which gives `C:\Mod Hub by VirtuOzZ`. That folder is the installed
+   program. Do not unpack it into the game folder, into Program Files (it cannot be written to without administrator
+   rights) or into folders synced by OneDrive.
+3. Run `C:\Mod Hub by VirtuOzZ\Mod Hub.exe`. There is no need to install .NET, everything is included.
+   The build is not code-signed: if Windows SmartScreen warns, click "More info" → "Run anyway".
 
-Требования: Windows 10/11 x64, GTA V Legacy или Enhanced. Для встроенного браузера каталога
-нужен Microsoft Edge WebView2 Runtime (в Windows 11 он уже есть).
+Requirements: Windows 10/11 x64, GTA V Legacy or Enhanced. The catalog's built-in browser needs the Microsoft Edge
+WebView2 Runtime (Windows 11 already has it).
 
-## Где Mod Hub хранит данные
+### Known limitation
 
-Mod Hub ничего не устанавливает в систему. Всё, что он пишет для себя, лежит в его папке:
+GTA V Enhanced only loads an ASI loader named `xinput1_4.dll` (it never loads `dinput8.dll`). Mod Hub currently
+takes it from NaturalVision Enhanced; without NVE, put your own Enhanced ASI loader as `xinput1_4.dll` for .asi mods
+and scripts to run.
+
+## Where Mod Hub keeps its data
+
+Mod Hub installs nothing into the system. Everything it writes for itself stays in its own folder:
 
 ```
 Mod Hub by VirtuOzZ\
-  Mod Hub.exe      запуск
-  README RU.txt    краткая инструкция (README EN.txt — по-английски)
-  Settings.json    настройки (создаётся при первом запуске)
-  Languages\       свои переводы интерфейса
-  Program\         файлы программы и .NET
-  Data\            ключи игры, кэш, встроенный браузер, загрузки, временные файлы
+  Mod Hub.exe      launcher
+  README EN.txt    short instructions (README RU.txt in Russian)
+  Settings.json    settings (created on first run)
+  Languages\       your own interface translations
+  Program\         program files and .NET
+  Data\            game keys, cache, built-in browser, downloads, temporary files
 ```
 
-Кроме папки программы Mod Hub пишет только:
+Besides its own folder, Mod Hub writes only:
 
-- **в папку игры** — сами моды, загрузчики и ASI-плагины, которые вы устанавливаете;
-- **в папку `ModHub` в корне диска игры** (`X:\ModHub\Legacy`, `X:\ModHub\Enhanced`) — журнал установок,
-  отключённые моды и копии для отмены. Она должна быть на том же диске, что и игра: так установка и
-  отмена выполняются мгновенным переименованием, без копирования гигабайтов. Там же по умолчанию
-  лежат резервные копии (`X:\ModHub\Backups`), папку можно сменить;
-- **в реестр** (`HKCU\Software\Classes`) — только если вы сами включите открытие `.oiv` двойным щелчком.
+- **into the game folder**: the mods, loaders and ASI plugins you install;
+- **into a `ModHub` folder in the root of the game's drive** (`X:\ModHub\Legacy`, `X:\ModHub\Enhanced`): the install
+  journal, disabled mods and undo copies. It must be on the same drive as the game, so installs and undo are instant
+  renames instead of copying gigabytes. Backups go there by default as well (`X:\ModHub\Backups`); the folder can be
+  changed;
+- **into the registry** (`HKCU\Software\Classes`): only if you turn on opening `.oiv` files with a double click.
 
-Папка «Документы\Rockstar Games» только читается. Если папка программы недоступна для записи
-(например, распакована в Program Files), данные идут в «Документы\ModHub».
+The "Documents\Rockstar Games" folder is only read. If the program folder is not writable (for example, unpacked into
+Program Files), data goes to "Documents\ModHub".
 
-## Как удалить
+## Uninstalling
 
-1. Если хотите вернуть игру к исходному состоянию — в Mod Hub нажмите «Вернуть ванильную игру»
-   (или отмените нужные установки в «История и отмена»).
-2. Если включали открытие `.oiv` двойным щелчком — выключите его в настройках.
-3. Удалите папку `Mod Hub by VirtuOzZ`.
-4. Удалите папку `ModHub` в корне диска игры. Только после шага 1: в ней лежат копии для отмены
-   и отключённые моды.
+> The "Uninstall Mod Hub" button in the settings does not work yet. To remove Mod Hub, simply delete its folder
+> (`C:\Mod Hub by VirtuOzZ`) as described below.
 
-## Как это работает с ключами игры
+1. If you want the game back in its original state, click "Restore vanilla game" in Mod Hub (or undo the installs you
+   want in "History and undo").
+2. If you turned on opening `.oiv` with a double click, turn it off in the settings.
+3. Delete the `Mod Hub by VirtuOzZ` folder.
+4. Delete the `ModHub` folder in the root of the game's drive. Only after step 1: it holds the undo copies and
+   disabled mods.
 
-Архивы RPF зашифрованы. Mod Hub **не содержит** ключей шифрования и файлов игры: ключи
-ищутся в исполняемом файле вашей копии игры (как это делает CodeWalker) и хранятся только у вас
-на компьютере. При первой установке скачиваются RageOpenV (официальный релиз авторов на GitHub,
-проверяется по SHA-256), Script Hook V (dev-c.com), ScriptHookVDotNet (GitHub) и `magic.dat` из
-проекта CodeWalker (GitHub). Сторонние программы Mod Hub не распространяет: их всегда скачивают
-с официальных страниц авторов.
+## Game keys
 
-## Сборка из исходников
+RPF archives are encrypted. Mod Hub **does not contain** any encryption keys or game files: keys are found in the
+executable of your own copy of the game (the way CodeWalker does it) and stay only on your computer. On first use it
+downloads RageOpenV (the authors' official GitHub release, checked by SHA-256), Script Hook V (dev-c.com),
+ScriptHookVDotNet (GitHub) and `magic.dat` from the CodeWalker project (GitHub). Mod Hub does not redistribute
+third-party programs: they are always downloaded from their authors' official pages.
 
-Нужно:
+## Building from source
+
+You need:
 - Windows 10/11 x64;
-- [.NET SDK 10](https://dotnet.microsoft.com/download) (версия задана в `global.json`);
-- для нативных компонентов (`native/`) — Visual Studio 2022 с C++ и CMake. Для сборки самого
-  приложения они не нужны: готовые `.asi` и запускатор уже лежат в репозитории.
+- [.NET SDK 10](https://dotnet.microsoft.com/download) (the version is pinned in `global.json`);
+- for the native components (`native/`): Visual Studio 2022 with C++ and CMake. They are not needed to build the
+  application itself: the prebuilt `.asi` and launcher are in the repository.
 
 ```powershell
 dotnet build GTAModManager.slnx -c Release
 dotnet test GTAModManager.slnx
 ```
 
-Сборка для пользователей (тесты → публикация → архив `build\ModHub-portable.zip`):
+A build for users (tests → publish → `build\ModHub-portable.zip`):
 
 ```powershell
 .\scripts\publish-portable.ps1
 ```
 
-## Структура
+## Repository layout
 
-| Папка | Что внутри |
+| Folder | Contents |
 |---|---|
-| `src/GTAModManager.App` | Приложение WPF |
-| `src/GTAModManager.Core` | Логика: RPF7, OIV, транзакции, бэкапы, каталог, локализация |
-| `src/GTAModManager.Cli` | Консольная утилита `gmm` |
-| `native/ModHubLauncher` | Запускатор `Mod Hub.exe`, который открывает `Program\ModHub.exe` |
-| `native/GMMPedSelector` | ASI-плагин выбора Add-On PED |
-| `tests` | Тесты |
-| `docs` | [Документация для разработчиков](docs/developer/developer-guide.ru.md) ([English](docs/developer/developer-guide.en.md)), описание системы переводов, инструкция для пользователей |
-
-## Участие в разработке
-
-Mod Hub — открытый проект. Его ведёт VirtuOzZ, но помогать может любой:
-
-- нашли ошибку — откройте [issue](../../issues): что делали, что ожидали, что получилось, версия игры
-  (Legacy или Enhanced) и номер сборки из настроек Mod Hub;
-- хотите исправить или добавить — присылайте pull request. Перед этим загляните в
-  [документацию для разработчиков](docs/developer/developer-guide.ru.md) и в [CONTRIBUTING.md](CONTRIBUTING.md);
-- переводы интерфейса — см. [docs/localization.md](docs/localization.md).
-
-## Лицензия
-
-Код Mod Hub — [MIT](LICENSE). Сторонние компоненты (шрифт Inter и другие) и программы, которые
-Mod Hub скачивает при установке (RageOpenV — GPL-3.0, Script Hook V, ScriptHookVDotNet), сохраняют
-свои лицензии — см. [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
-
-Проект не связан с Rockstar Games и Take-Two Interactive. Не используйте моды в GTA Online.
-
----
-
-## English
-
-Mod Hub is a Windows mod manager for GTA V Legacy and Enhanced. Its goal is to make GTA modding easier for
-newcomers: what veterans do by hand from each mod's instructions, Mod Hub tries to do for you.
-
-**Version 0.4 beta.** This is a beta: bugs are possible, please report them in [issues](../../issues). Mod Hub is developed by one person, VirtuOzZ, and it is open: fixes, new features and
-translations are welcome as pull requests (see [Contributing](#contributing)). **Important:** Mod Hub has only
-been tested on clean games. Using it on a GTA V or GTA V Enhanced that already has mods installed (by hand,
-with OpenIV, etc.) has not been tested yet — back up your game before using it.
-
-**Features:** installs OIV packages and regular archives (ZIP/RAR/7Z) through the `mods\` overlay
-without touching original game files; one-click modding essentials (Script Hook V, RageOpenV,
-ScriptHookVDotNet, limit adjusters; Resource Extensions is recognised); transactional installs with
-backups and undo; restore to a clean game; a curated mod catalog with Legacy/Enhanced compatibility;
-Add-On PEDs for Legacy; NaturalVision Evolved / Enhanced and LCPP installers (from archives you
-downloaded yourself) — on Enhanced Mod Hub installs NVE's ASI loader and mirrors `mods\` into the onigiri
-folder so NVE and other mods work together; hotkeys for keyboard and gamepad (Xbox or PlayStation labels)
-with conflict search, remapping and switching keys off; engine sounds for add-on cars; mod toggle;
-Russian, English and Ukrainian UI; no installation.
-
-**Download and run:** get `ModHub-portable.zip` from [Releases](../../releases), unpack it to the root of the system drive
-(`C:\Mod Hub by VirtuOzZ`; not into the game folder, Program Files or a OneDrive-synced folder) and run `Mod Hub by VirtuOzZ\Mod Hub.exe`. .NET is bundled. Windows 10/11 x64.
-
-**Where it writes:** everything ModHub keeps for itself stays in its own folder (`Settings.json`, `Languages\`,
-`Program\`, `Data\`). Besides that it writes only the mods you install into the game folder, a service
-folder `X:\ModHub\<Edition>` on the game's drive (install journal, disabled mods, undo copies, default
-backups; it must share the game's drive so installs and undo are instant renames) and, only if you turn it on,
-the `.oiv` file association in `HKCU\Software\Classes`.
-
-**Uninstall:** restore a clean game in ModHub if you want to, turn off the `.oiv` association if you enabled it,
-then delete the `Mod Hub by VirtuOzZ` folder and the `ModHub` folder on the game's drive.
-
-**Game keys:** no encryption keys or game files are shipped. Keys are read from your own copy of
-the game and stay on your computer.
-
-**Third-party programs are not shipped either:** RageOpenV (the authors' official GitHub release, checked by
-SHA-256), Script Hook V (dev-c.com) and ScriptHookVDotNet (GitHub) are downloaded from their authors' pages
-when you install them.
-
-**Build:** Windows x64, .NET SDK 10 (see `global.json`).
-
-```powershell
-dotnet build GTAModManager.slnx -c Release
-dotnet test GTAModManager.slnx
-```
+| `src/GTAModManager.App` | The WPF application |
+| `src/GTAModManager.Core` | Logic: RPF7, OIV, transactions, backups, catalog, localization |
+| `src/GTAModManager.Cli` | The `gmm` command-line tool |
+| `native/ModHubLauncher` | The `Mod Hub.exe` launcher that starts `Program\ModHub.exe` |
+| `native/GMMPedSelector` | The Add-On ped selector ASI plugin |
+| `tests` | Tests |
+| `docs` | [Developer guide](docs/developer/developer-guide.en.md), the translation system, user instructions |
 
 ## Contributing
 
-Mod Hub is an open project led by VirtuOzZ, and anyone can help: report bugs in [issues](../../issues)
-(what you did, what you expected, what happened, Legacy or Enhanced, and the build number from Mod Hub's
-settings), send pull requests with fixes or features (read the
-[developer guide](docs/developer/developer-guide.en.md) and [CONTRIBUTING.md](CONTRIBUTING.md) first), or
-add a translation ([docs/localization.md](docs/localization.md)).
+Mod Hub is an open project led by VirtuOzZ, and anyone can help:
 
-**License:** Mod Hub code is [MIT](LICENSE). Third-party components keep their own licenses — see
-[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). Not affiliated with Rockstar Games or
-Take-Two Interactive. Do not use mods in GTA Online.
+- found a bug: open an [issue](../../issues) with what you did, what you expected, what happened, Legacy or Enhanced,
+  and the build number from Mod Hub's settings;
+- want to fix or add something: send a pull request. Read the [developer guide](docs/developer/developer-guide.en.md)
+  and [CONTRIBUTING.md](CONTRIBUTING.md) first;
+- interface translations: see [docs/localization.md](docs/localization.md).
+
+## License
+
+Mod Hub code is [MIT](LICENSE). Third-party components (the Inter font and others) and the programs Mod Hub downloads
+during installation (RageOpenV — GPL-3.0, Script Hook V, ScriptHookVDotNet) keep their own licenses — see
+[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+
+Not affiliated with Rockstar Games or Take-Two Interactive. Single player only — do not use mods in GTA Online.
