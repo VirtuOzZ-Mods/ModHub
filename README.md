@@ -3,7 +3,7 @@
 A mod manager for GTA V **Legacy** and **Enhanced** on Windows. Its goal is to make GTA modding easier for
 newcomers: what veterans do by hand from each mod's instructions, Mod Hub tries to do for you.
 
-> **Version 0.4 beta.** This is a beta: bugs are possible, please report them in [Issues](../../issues).
+> **Version 0.4.1 beta.** This is a beta: bugs are possible, please report them in [Issues](../../issues).
 > Mod Hub is developed by one person, VirtuOzZ, and it is open: fixes, new features and translations are
 > welcome as pull requests (see [Contributing](#contributing)).
 >
@@ -34,7 +34,7 @@ The game is detected automatically (Rockstar Games Launcher, Steam, Epic Games).
 
 ## Download and run
 
-1. Download `ModHub-0.4-beta.zip` from [Releases](../../releases).
+1. Download `ModHub-0.4.1-beta.zip` from [Releases](../../releases).
 2. Unpack it to the root of the system drive, which gives `C:\Mod Hub by VirtuOzZ`. That folder is the installed
    program. Do not unpack it into the game folder, into Program Files (it cannot be written to without administrator
    rights) or into folders synced by OneDrive.
@@ -53,7 +53,7 @@ Mod Hub is an `.exe`, so it is fair to ask. Here is how you can check it instead
   [release workflow](.github/workflows/release.yml) checks out the tagged source on GitHub's servers, runs all the
   tests, builds the archive and attaches it to the release together with a signed
   [build provenance attestation](../../attestations). To check a downloaded archive (with the GitHub CLI):
-  `gh attestation verify ModHub-0.4-beta.zip --repo VirtuOzZ-Mods/ModHub`. The release notes also list its SHA-256.
+  `gh attestation verify ModHub-0.4.1-beta.zip --repo VirtuOzZ-Mods/ModHub`. The release notes also list its SHA-256.
 - **VirusTotal.** Each release links a VirusTotal report of its archive.
 - **Why it asks for administrator rights.** Rockstar's launcher locks the game folder, so writing mods there needs
   the UAC prompt. Only the small `gmm.exe` helper runs elevated, and only to change the game folder; the window
